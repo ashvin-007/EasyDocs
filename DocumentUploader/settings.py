@@ -71,7 +71,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DocumentUploader.wsgi.application'
 
+ALLOWED_HOSTS = [
+    "easydocs-j48k.onrender.com",  # ✅ Add your Render domain
+    "localhost",
+    "127.0.0.1"
+]
 
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
