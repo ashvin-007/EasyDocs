@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{%block title%} Doc-Home{%endblock%}
+{%block content%}
+<div class="container mt-5">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h1 class="text-center mb-4">Document List</h1>
+    {%if document%}
+    <div class="row">
+        {% for d in document %}
+        {% comment %} {%for u in user%} {% endcomment %}
+        <div class="col-md-4">
+            <div class="card shadow-lg mb-4">
+                <div class="card-body">
+                    
+                    <h5 class="card-title">{{ d.title }}</h5>
+                    <h5 class="card-title">{{ d.user.username }}</h5>
+                    <p class="card-text">{{ d.description }}</p>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ d.doc.url }}" class="btn btn-primary" target="_blank">
+                            <i class="bi bi-eye"></i> View File
+                        </a>
+                        <a href="{% url 'download_pdf' d.id %}" class="btn btn-success">
+                            <i class="bi bi-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% comment %} {%endfor%} {% endcomment %}
+        {% endfor %}
+    </div>
+    {%else%}
+    <p>No Document Exist</p>
+    {%endif%}
+</div>
+{%endblock%}
